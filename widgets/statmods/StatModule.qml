@@ -14,7 +14,11 @@ Button {
     icon.height: iconSize ? iconSize : undefined
     icon.width: iconSize ? iconSize : undefined
     background: Rectangle {
-        color: !btn.hovered ? ColorSettings.primary : Qt.darker(ColorSettings.primary, 1.2)
+        color: !btn.hovered ? ColorSettings.primary : ColorSettings.primaryDarker20
         radius: MiscSettings.rectRoundness
+
+        Behavior on color {
+            ColorAnimation { duration: 120 }
+        }
     }
 }

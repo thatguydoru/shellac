@@ -14,7 +14,7 @@ Singleton {
     I3IpcListener {
         id: listener
 
-        property string mode
+        property string mode: "default"
 
         subscriptions: ["window", "mode"]
 

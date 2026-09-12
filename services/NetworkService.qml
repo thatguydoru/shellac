@@ -7,7 +7,7 @@ import Quickshell
 import Quickshell.Networking
 
 Singleton {
-    readonly property string stateIconName: getIconName(connectedDevice)
+    readonly property string stateIconName: makeIconNameForDevice(connectedDevice)
     readonly property NetworkDevice connectedDevice: getConnectedDevice()
     readonly property Network connectedNetwork: getConnectedNetwork(connectedDevice)
 
@@ -20,7 +20,7 @@ Singleton {
     }
 
     // network-<device-type>-<device-state>-symbolic
-    function getIconName(dev: NetworkDevice): string {
+    function makeIconNameForDevice(dev: NetworkDevice): string {
         const icon = ["network", deviceTypeStr(dev?.type), deviceStateStr(dev), "symbolic"];
         return icon.filter(s => !!s).join("-");
     }

@@ -3,7 +3,6 @@ import QtQuick.Layouts
 import Quickshell
 
 import "../settings"
-import "../services"
 import "statmods"
 import "statmods/sway"
 
@@ -34,7 +33,7 @@ PanelWindow { // qmllint disable uncreatable-type
         anchors.centerIn: parent
 
         RowLayout {
-            spacing: SpacingSettings.small
+            spacing: 0
             anchors.left: parent.left
             anchors.verticalCenter: parent.verticalCenter
             anchors.leftMargin: SpacingSettings.base
@@ -43,18 +42,18 @@ PanelWindow { // qmllint disable uncreatable-type
             SwayWorkspacesStatModule {}
             Separator {}
             SwayScratchpadStatModule {}
+            SwayModeStatModule {}
         }
 
         RowLayout {
-            spacing: SpacingSettings.small
+            spacing: 0
             anchors.right: parent.right
             anchors.verticalCenter: parent.verticalCenter
             anchors.rightMargin: SpacingSettings.base
 
-            StatModule {
-                icon.name: NetworkService.stateIconName
-                iconSize: IconSettings.small
-            }
+            Separator {}
+            NetworkStatModule {}
+            BluetoothStatModule {}
             Separator {}
             TimeStatModule {}
             Separator {}
@@ -62,7 +61,7 @@ PanelWindow { // qmllint disable uncreatable-type
     }
 
     component Separator: Rectangle {
-        color: Qt.darker(ColorSettings.primary, 1.8)
+        color: ColorSettings.primaryDarker80
         implicitHeight: parent.implicitHeight * 0.4
         implicitWidth: 2
     }

@@ -14,7 +14,7 @@ StatModule {
         spacing: SpacingSettings.smaller
 
         IconImage {
-            source: Quickshell.iconPath(IconSettings.focusWindowsIcon)
+            source: Quickshell.iconPath("focus-windows-symbolic")
             implicitSize: IconSettings.small
         }
 
