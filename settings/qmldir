@@ -1,0 +1,5 @@
+singleton ColorSettings 1.0 ColorSettings.qml
+singleton FontSettings 1.0 FontSettings.qml
+singleton IconSettings 1.0 IconSettings.qml
+singleton MiscSettings 1.0 MiscSettings.qml
+singleton SpacingSettings 1.0 SpacingSettings.qml
