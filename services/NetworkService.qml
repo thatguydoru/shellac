@@ -19,49 +19,39 @@ Singleton {
         return Networking.devices.values.find(n => n.connected) || null;
     }
 
-    // network-<device-type>-<device-state>-symbolic
+    // network-<conn-state>-symbolic
     function makeIconNameForDevice(dev: NetworkDevice): string {
-        const icon = ["network", deviceTypeStr(dev?.type), deviceStateStr(dev), "symbolic"];
-        return icon.filter(s => !!s).join("-");
-    }
-
-    function deviceTypeStr(ty: int): string {
-        switch (ty) {
-            case DeviceType.Wifi:
-                return "wireless";
-            default:
-                return "wired";
-        }
+        return ["network", deviceStateStr(dev), "symbolic"].join("-");
     }
 
     function deviceStateStr(dev: NetworkDevice): string {
         switch (dev?.state) {
             case ConnectionState.Connecting:
-                return "acquiring";
+                return dev.type === DeviceType.Wifi ? "wireless-acquiring" : "wired-acquiring";
             case ConnectionState.Connected:
-                return dev.type === DeviceType.Wifi ? wifiStrengthStr(getConnectedNetwork(dev)) : ""
+                return dev.type === DeviceType.Wifi ? wifiStrengthStr(getConnectedNetwork(dev)) : "wired"
             case ConnectionState.Unknown:
-                return "no-route";
+                return dev.type === DeviceType.Wifi ? "wireless-no-route" : "wired-no-route";
             case ConnectionState.Disconnecting:
             case ConnectionState.Disconnected:
-                return dev.type === DeviceType.Wifi ? "offline" : "disconnected";
+                return dev.type === DeviceType.Wifi ? "wireless-offline" : "wired-disconnected";
             default:
-                return "disconnected"
+                return "wired-disconnected"
         }
     }
 
     function wifiStrengthStr(net: WifiNetwork): string {
-        if (!net) return "acquiring";
+        if (!net) return "wireless-acquiring";
 
         if (net.signalStrength >= 0.9)
-            return "signal-excellent";
+            return "wireless-signal-excellent";
         else if (net.signalStrength >= 0.75 && net.signalStrength < 0.9)
-            return "signal-good";
+            return "wireless-signal-good";
         else if (net.signalStrength >= 0.5 && net.signalStrength < 0.75)
-            return "signal-ok";
+            return "wireless-signal-ok";
         else if (net.signalStrength >= 0.2 && net.signalStrength < 0.5)
-            return "signal-weak";
-        else
-            return "signal-none";
+            return "wireless-signal-weak";
+
+        return "wireless-signal-none";
     }
 }

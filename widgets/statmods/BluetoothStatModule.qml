@@ -4,7 +4,6 @@ import "../../services"
 import "../../settings"
 
 StatModule {
-    icon.name: BluetoothService.defaultAdapterStateIconName
+    icon.name: BluetoothService.stateIconName
     iconSize: IconSettings.small
-    Component.onCompleted: console.log(icon.name)
 }

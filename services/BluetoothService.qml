@@ -7,7 +7,7 @@ import Quickshell
 import Quickshell.Bluetooth
 
 Singleton {
-    readonly property string defaultAdapterStateIconName: makeIconNameForAdapter(defaultAdapter)
+    readonly property string stateIconName: makeIconNameForAdapter(defaultAdapter)
     readonly property BluetoothAdapter defaultAdapter: Bluetooth.defaultAdapter
 
     // bluetooth-<device-status>-symbolic

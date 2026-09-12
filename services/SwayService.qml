@@ -8,8 +8,12 @@ import Quickshell.I3
 import Quickshell.Io
 
 Singleton {
+    id: root
+
     readonly property alias scratchpadWindowIds: treeCmd.scratchpadWindowIds
     readonly property alias mode: listener.mode
+
+    signal treeRefreshed(tree: var)
 
     I3IpcListener {
         id: listener
@@ -35,19 +39,19 @@ Singleton {
     Process {
         id: treeCmd
 
-        property var tree: null
         property list<int> scratchpadWindowIds
 
         command: ["swaymsg", "-t", "get_tree"]
         running: true
         stdout: StdioCollector {
             onStreamFinished: {
-                treeCmd.tree = JSON.parse(text);
-                treeCmd.updateScratchpadWindowIds();
+                const tree = JSON.parse(text);
+                treeCmd.updateScratchpadWindowIds(tree);
+                root.treeRefreshed(tree);
             }
         }
 
-        function updateScratchpadWindowIds() {
+        function updateScratchpadWindowIds(tree: var) {
             scratchpadWindowIds = tree
                 .nodes
                 .find(n => n.name === "__i3")
@@ -59,5 +63,9 @@ Singleton {
         function refresh() {
             running = true;
         }
+    }
+
+    function getWorkspaceByNumber(num: int): I3Workspace {
+        return I3.workspaces.values.find(w => w.number === num) || null;
     }
 }

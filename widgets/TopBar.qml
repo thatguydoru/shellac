@@ -1,3 +1,5 @@
+// qmllint disable uncreatable-type unqualified unresolved-type
+
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
@@ -6,7 +8,7 @@ import "../settings"
 import "statmods"
 import "statmods/sway"
 
-PanelWindow { // qmllint disable uncreatable-type
+    PanelWindow {
     id: bar
 
     color: "transparent"
@@ -18,7 +20,7 @@ PanelWindow { // qmllint disable uncreatable-type
         right: true
     }
 
-    margins { // qmllint disable unqualified unresolved-type
+    margins {
         top: SpacingSettings.small
         left: SpacingSettings.small
         right: SpacingSettings.small
@@ -52,8 +54,9 @@ PanelWindow { // qmllint disable uncreatable-type
             anchors.rightMargin: SpacingSettings.base
 
             Separator {}
-            NetworkStatModule {}
-            BluetoothStatModule {}
+            ConnectionGroupStatModule {}
+            Separator {}
+            AudioGroupStatModule {}
             Separator {}
             TimeStatModule {}
             Separator {}

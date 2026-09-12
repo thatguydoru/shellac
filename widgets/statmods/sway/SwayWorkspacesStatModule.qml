@@ -7,6 +7,7 @@ import Quickshell.I3
 import ".."
 import "../../components"
 import "../../../settings"
+import "../../../services"
 
 StatModule {
     contentItem: RowLayout {
@@ -19,9 +20,7 @@ StatModule {
                 id: loader
 
                 required property int modelData
-                readonly property I3Workspace workspace: {
-                    return I3.workspaces.values.find(w => w.number === modelData + 1) || null;
-                }
+                readonly property I3Workspace workspace: SwayService.getWorkspaceByNumber(modelData + 1)
 
                 sourceComponent: workspace ? active : inactive
 

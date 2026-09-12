@@ -1,4 +1,5 @@
+singleton AudioSerivce 1.0 AudioService.qml
+singleton BluetoothService 1.0 BluetoothService.qml
 singleton NetworkService 1.0 NetworkService.qml
 singleton SwayService 1.0 SwayService.qml
 singleton TimeService 1.0 TimeService.qml
-singleton BluetoothService 1.0 BluetoothService.qml
