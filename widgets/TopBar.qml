@@ -8,7 +8,7 @@ import "../settings"
 import "statmods"
 import "statmods/sway"
 
-    PanelWindow {
+PanelWindow {
     id: bar
 
     color: "transparent"
@@ -35,32 +35,59 @@ import "statmods/sway"
         anchors.centerIn: parent
 
         RowLayout {
-            spacing: 0
+            spacing: SpacingSettings.small
             anchors.left: parent.left
             anchors.verticalCenter: parent.verticalCenter
             anchors.leftMargin: SpacingSettings.base
 
             Separator {}
+
             SwayWorkspacesStatModule {}
+
             Separator {}
+
             SwayScratchpadStatModule {}
+
             SwayModeStatModule {}
         }
 
         RowLayout {
-            spacing: 0
+            spacing: SpacingSettings.small
             anchors.right: parent.right
             anchors.verticalCenter: parent.verticalCenter
             anchors.rightMargin: SpacingSettings.base
 
             Separator {}
-            NetworkStatModule {}
-            BluetoothStatModule {}
+
+            RowLayout {
+                spacing: 0
+
+                NetworkStatModule {}
+                BluetoothStatModule {}
+            }
+
             Separator {}
-            AudioSinkStatModule {}
-            AudioSourceStatModule {}
+
+            RowLayout {
+                spacing: 0
+
+                AudioSinkStatModule {}
+                AudioSourceStatModule {}
+            }
+
             Separator {}
+
+            RowLayout {
+                spacing: 0
+
+                MemoryStatModule {}
+                DiskStatModule {}
+            }
+
+            Separator {}
+
             TimeStatModule {}
+
             Separator {}
         }
     }
