@@ -54,9 +54,11 @@ import "statmods/sway"
             anchors.rightMargin: SpacingSettings.base
 
             Separator {}
-            ConnectionGroupStatModule {}
+            NetworkStatModule {}
+            BluetoothStatModule {}
             Separator {}
-            AudioGroupStatModule {}
+            AudioSinkStatModule {}
+            AudioSourceStatModule {}
             Separator {}
             TimeStatModule {}
             Separator {}
