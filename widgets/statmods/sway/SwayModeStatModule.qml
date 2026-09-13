@@ -8,7 +8,8 @@ import "../../../settings"
 StatModule {
     visible: SwayService.mode !== "default"
     contentItem: StyledText {
-        text: SwayService.mode
+        opacity: SwayService.mode !== "default"
+        text: `swaymode:${SwayService.mode}`
         font.pointSize: FontSettings.small
     }
 }

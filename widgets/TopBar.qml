@@ -41,14 +41,15 @@ PanelWindow {
             anchors.leftMargin: SpacingSettings.base
 
             Separator {}
-
             SwayWorkspacesStatModule {}
-
             Separator {}
 
-            SwayScratchpadStatModule {}
+            RowLayout {
+                spacing: 0
 
-            SwayModeStatModule {}
+                SwayScratchpadStatModule {}
+                SwayModeStatModule {}
+            }
         }
 
         RowLayout {
@@ -58,14 +59,12 @@ PanelWindow {
             anchors.rightMargin: SpacingSettings.base
 
             Separator {}
-
             RowLayout {
                 spacing: 0
 
                 NetworkStatModule {}
                 BluetoothStatModule {}
             }
-
             Separator {}
 
             RowLayout {
@@ -76,18 +75,9 @@ PanelWindow {
             }
 
             Separator {}
-
-            RowLayout {
-                spacing: 0
-
-                MemoryStatModule {}
-                DiskStatModule {}
-            }
-
+            MemoryStatModule {}
             Separator {}
-
             TimeStatModule {}
-
             Separator {}
         }
     }

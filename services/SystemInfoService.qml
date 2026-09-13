@@ -68,9 +68,15 @@ Singleton {
         triggeredOnStart: true
         running: true
 
-        onTriggered: {
-            freeCmd.running = true;
-            dfCmd.running = true;
-        }
+        onTriggered: freeCmd.running = true
+    }
+
+    Timer {
+        interval: 10000
+        repeat: true
+        triggeredOnStart: true
+        // running: true
+
+        onTriggered: dfCmd.running = true;
     }
 }
